@@ -13,3 +13,79 @@ body, html, #root {
   justify-content: center;
   align-items: center;
 }
+
+/* Container for the transition */
+/* Container for the transition */
+.transition-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none; /* Prevent interaction */
+  z-index: 1000;
+  overflow: hidden;
+}
+
+/* General block style */
+.block {
+  position: absolute;
+  background-color: #000000; /* Charcoal grey */
+  opacity: 0;
+  transition: all 0.8s ease-in-out;
+}
+
+/* Specific block sizes and animations */
+.block-1 {
+  width: 60vw;
+  height: 60vh;
+  bottom: 0;
+  right: 0;
+  animation: showBlock 0.8s ease-in-out forwards 0.2s;
+}
+
+.block-2 {
+  width: 40vw;
+  height: 20vh;
+  bottom: 0;
+  left: 0;
+  animation: showBlock 0.8s ease-in-out forwards 1s;
+}
+
+.block-3 {
+  width: 40vw;
+  height: 80vh;
+  top: 0;
+  left: 0;
+  animation: showBlock 0.8s ease-in-out forwards 1.8s;
+}
+
+.block-4 {
+  width: 60vw;
+  height: 40vh;
+  top: 0;
+  right: 0;
+  animation: showBlock 0.8s ease-in-out forwards 2.6s;
+}
+
+/* .block-5 {
+  width: 50vw;
+  height: 20vh;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: showBlock 0.8s ease-in-out forwards 3.4s;
+} */
+
+/* Keyframes for the blocks to expand and cover the screen */
+@keyframes showBlock {
+  0% {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  100% {
+    opacity: 1;
+    /* Each block has its specific width and height set in its class */
+  }
+}

@@ -183,52 +183,12 @@ const BlueSkyPastelBalloonCluster: React.FC = () => {
 
   const handleMenuClick = useCallback(() => {
     setIsTransitioning(true);
-    createCharcoalTransition();
+
+    // Trigger the transition after the animation completes
     setTimeout(() => {
       window.location.href = '/menu.html';
-    }, 2000);
+    }, 3700); // Time for the entire animation (5 blocks) to finish
   }, []);
-
-  const createCharcoalTransition = () => {
-    const transitionContainer = document.createElement('div');
-    transitionContainer.style.position = 'fixed';
-    transitionContainer.style.top = '0';
-    transitionContainer.style.left = '0';
-    transitionContainer.style.width = '100vw';
-    transitionContainer.style.height = '100vh';
-    transitionContainer.style.zIndex = '1000';
-    transitionContainer.style.pointerEvents = 'none';
-
-    const numShapes = 50;
-    const charcoalColor = '#222222';
-
-    for (let i = 0; i < numShapes; i++) {
-      const shape = document.createElement('div');
-      const size = Math.random() * 100 + 50;
-      const isSquare = Math.random() > 0.5;
-
-      shape.style.position = 'absolute';
-      shape.style.width = `${size}px`;
-      shape.style.height = isSquare ? `${size}px` : `${size * 1.5}px`;
-      shape.style.backgroundColor = charcoalColor;
-      shape.style.left = `${Math.random() * 100}vw`;
-      shape.style.top = `${Math.random() * 100}vh`;
-      shape.style.transform = 'scale(0)';
-      shape.style.transition = `transform ${Math.random() * 0.5 + 1.5}s ease-out`;
-
-      transitionContainer.appendChild(shape);
-
-      setTimeout(() => {
-        shape.style.transform = 'scale(1)';
-      }, Math.random() * 500);
-    }
-
-    document.body.appendChild(transitionContainer);
-
-    setTimeout(() => {
-      transitionContainer.style.backgroundColor = charcoalColor;
-    }, 1500);
-  };
 
   return (
     <div style={{ position: 'relative', width: '100%', height: '100vh', overflow: 'hidden' }}>
@@ -269,6 +229,17 @@ const BlueSkyPastelBalloonCluster: React.FC = () => {
           boxShadow: '0 4px 8px rgba(0, 0, 0, 0.5)',
         }} />
       </button>
+
+      {/* Transition Animation - Varied Rectangular Blocks */}
+      {isTransitioning && (
+        <div className="transition-container">
+          <div className="block block-1"></div>
+          <div className="block block-2"></div>
+          <div className="block block-3"></div>
+          <div className="block block-4"></div>
+          {/* <div className="block block-5"></div> Optional additional block */}
+        </div>
+      )}
     </div>
   );
 };
