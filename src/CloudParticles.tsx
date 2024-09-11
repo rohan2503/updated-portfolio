@@ -1,17 +1,13 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState, useCallback } from 'react';
 import * as THREE from 'three';
 import CANNON from 'cannon';
-import TextOverlay from './TextOverlay'; // Import the new TextOverlay component
+import TextOverlay from './TextOverlay';
 
 const BlueSkyPastelBalloonCluster: React.FC = () => {
   const mountRef = useRef<HTMLDivElement>(null);
   const mouseRef = useRef<THREE.Vector2>(new THREE.Vector2());
   const raycasterRef = useRef<THREE.Raycaster>(new THREE.Raycaster());
-
-  // Add the navigation function here
-  const navigateToMenuPage = () => {
-    window.location.href = '/menu';  // Navigate to your menu page
-  };
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   useEffect(() => {
     if (!mountRef.current) return;
@@ -158,70 +154,119 @@ const BlueSkyPastelBalloonCluster: React.FC = () => {
 
     animate();
 
-    // Function to create gradient texture
-    function createGradientTexture(topColor: THREE.Color, bottomColor: THREE.Color) {
-      const canvas = document.createElement('canvas');
-      canvas.width = 2;
-      canvas.height = 2;
-      
-      const context = canvas.getContext('2d');
-      if (context) {
-        const gradient = context.createLinearGradient(0, 0, 0, 2);
-        gradient.addColorStop(0, topColor.getStyle());
-        gradient.addColorStop(1, bottomColor.getStyle());
-        
-        context.fillStyle = gradient;
-        context.fillRect(0, 0, 2, 2);
-      }
-      
-      const texture = new THREE.CanvasTexture(canvas);
-      texture.minFilter = THREE.LinearFilter;
-      return texture;
-    }
-
     return () => {
       window.removeEventListener('mousemove', onMouseMove);
       mountRef.current?.removeChild(renderer.domElement);
     };
   }, []);
 
-  return (
-    <div style={{ position: 'relative', width: '100%', height: '100vh' }}>
-      <div ref={mountRef} style={{ width: '100%', height: '100%' }} />
-      <TextOverlay /> {/* Add your overlay text here */}
+  // Function to create gradient texture
+  function createGradientTexture(topColor: THREE.Color, bottomColor: THREE.Color) {
+    const canvas = document.createElement('canvas');
+    canvas.width = 2;
+    canvas.height = 2;
+    
+    const context = canvas.getContext('2d');
+    if (context) {
+      const gradient = context.createLinearGradient(0, 0, 0, 2);
+      gradient.addColorStop(0, topColor.getStyle());
+      gradient.addColorStop(1, bottomColor.getStyle());
       
-      {/* Menu Button */}
+      context.fillStyle = gradient;
+      context.fillRect(0, 0, 2, 2);
+    }
+    
+    const texture = new THREE.CanvasTexture(canvas);
+    texture.minFilter = THREE.LinearFilter;
+    return texture;
+  }
+
+  const handleMenuClick = useCallback(() => {
+    setIsTransitioning(true);
+    createCharcoalTransition();
+    setTimeout(() => {
+      window.location.href = '/menu.html';
+    }, 2000);
+  }, []);
+
+  const createCharcoalTransition = () => {
+    const transitionContainer = document.createElement('div');
+    transitionContainer.style.position = 'fixed';
+    transitionContainer.style.top = '0';
+    transitionContainer.style.left = '0';
+    transitionContainer.style.width = '100vw';
+    transitionContainer.style.height = '100vh';
+    transitionContainer.style.zIndex = '1000';
+    transitionContainer.style.pointerEvents = 'none';
+
+    const numShapes = 50;
+    const charcoalColor = '#222222';
+
+    for (let i = 0; i < numShapes; i++) {
+      const shape = document.createElement('div');
+      const size = Math.random() * 100 + 50;
+      const isSquare = Math.random() > 0.5;
+
+      shape.style.position = 'absolute';
+      shape.style.width = `${size}px`;
+      shape.style.height = isSquare ? `${size}px` : `${size * 1.5}px`;
+      shape.style.backgroundColor = charcoalColor;
+      shape.style.left = `${Math.random() * 100}vw`;
+      shape.style.top = `${Math.random() * 100}vh`;
+      shape.style.transform = 'scale(0)';
+      shape.style.transition = `transform ${Math.random() * 0.5 + 1.5}s ease-out`;
+
+      transitionContainer.appendChild(shape);
+
+      setTimeout(() => {
+        shape.style.transform = 'scale(1)';
+      }, Math.random() * 500);
+    }
+
+    document.body.appendChild(transitionContainer);
+
+    setTimeout(() => {
+      transitionContainer.style.backgroundColor = charcoalColor;
+    }, 1500);
+  };
+
+  return (
+    <div style={{ position: 'relative', width: '100%', height: '100vh', overflow: 'hidden' }}>
+      <div ref={mountRef} style={{ width: '100%', height: '100%' }} />
+      <TextOverlay />
+      
       {/* Hamburger Menu Button */}
       <button 
-        onClick={() => window.location.href = '/menu.html'} // Change to your menu page URL
+        onClick={handleMenuClick}
         style={{
           position: 'absolute',
           top: '20px',
-          right: '20px', // Move to top left
-          background: 'rgba(0, 0, 0, 0)', // Semi-transparent white
+          right: '20px',
+          background: 'rgba(0, 0, 0, 0)',
           border: 'none',
           cursor: 'pointer',
           padding: '10px',
-          transition: 'transform 0.3s', // Add transition for scaling
+          transition: 'transform 0.3s',
+          zIndex: 1001,
         }}
-        onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.1)'} // Scale up on hover
-        onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'} // Scale back down
+        onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.1)'}
+        onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
       >
         <div style={{
-          width: '40px', // Increased width for longer lines
-          height: '3px', // Thinner lines
-          backgroundColor: 'rgba(255, 255, 255, 0.9)', // Semi-transparent white
-          margin: '5px 0', // Space between lines
-          borderRadius: '2px', // Rounded edges
-          boxShadow: '0 4px 8px rgba(0, 0, 0, 0.5)', // Shadow for depth
+          width: '40px',
+          height: '3px',
+          backgroundColor: 'rgba(255, 255, 255, 0.9)',
+          margin: '5px 0',
+          borderRadius: '2px',
+          boxShadow: '0 4px 8px rgba(0, 0, 0, 0.5)',
         }} />
         <div style={{
-          width: '40px', // Increased width for longer lines
-          height: '3px', // Thinner lines
-          backgroundColor: 'rgba(255, 255, 255, 0.9)', // Semi-transparent white
-          margin: '5px 0', // Space between lines
-          borderRadius: '2px', // Rounded edges
-          boxShadow: '0 4px 8px rgba(0, 0, 0, 0.5)', // Shadow for depth
+          width: '40px',
+          height: '3px',
+          backgroundColor: 'rgba(255, 255, 255, 0.9)',
+          margin: '5px 0',
+          borderRadius: '2px',
+          boxShadow: '0 4px 8px rgba(0, 0, 0, 0.5)',
         }} />
       </button>
     </div>
