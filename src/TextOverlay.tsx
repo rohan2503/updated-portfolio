@@ -9,7 +9,7 @@ const TextOverlay: React.FC = () => {
       transform: 'translate(-50%, -50%)',
       textAlign: 'center',
       color: 'transparent', // Make text transparent for gradient effect
-      background: 'linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.5))', // More white gradient
+      background: 'linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.9))', // More white gradient
       WebkitBackgroundClip: 'text', // Clip the background to the text
       fontSize: '3.5rem', // Increased font size for "ROHAN"
       fontWeight: 'bold',

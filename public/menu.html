@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="menu-style.css">
+</head>
+<body>
+    <svg width="0" height="0">
+        <filter id="metallic-text">
+            <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" result="noise"/>
+            <feDiffuseLighting in="noise" lighting-color="#fff" surfaceScale="1" result="diffLight">
+                <feDistantLight azimuth="225" elevation="40" />
+            </feDiffuseLighting>
+            <feComposite in="SourceGraphic" in2="diffLight" operator="arithmetic" k1="1" k2="0" k3="0.7" k4="0" />
+        </filter>
+    </svg>
+
+    <div class="menu-container">
+        <div id="card1" class="card horizontal clickable">
+            <h2 class="metallic-text">Projects</h2>
+        </div>
+
+        <div id="card2" class="card vertical clickable">
+            <h2 class="metallic-text">About</h2>
+        </div>
+        
+        <!-- Add the overlay div here -->
+        <div id="overlay"></div>
+        
+        <div id="about-popup" class="popup">
+            <div class="popup-content">
+              <span class="close-btn">&times;</span>
+              <img src="IMG_4689.jpg" alt="Your Name" class="profile-picture">
+              <div class="about-text">
+                <p>Hi, I'm Rohan Yogananda, a frontend engineer passionate about crafting intuitive and visually appealing web experiences. I enjoy blending design with functionality, focusing on creating user-centric interfaces. My approach to engineering is inspired by one of my favorite quotes from Rick Rubin:
+<br/>
+<br/>
+
+                    “I know nothing about music.” Legendary music producer Rick Rubin says he can barely play any instruments, but artists come to him because of “the confidence I have in my taste and my ability to express what I feel.”
+                    <br/><br/>
+                    Like Rubin, I believe in the power of taste, creativity, and the confidence to bring ideas to life.</p>
+                
+                
+              </div>
+            </div>
+          </div>
+
+        <div class="home-button-container">
+            <div class="geometric-background"></div>
+            <a href="index.html" class="home-button">
+                <span>R.</span> <!-- Removed metallic-text class -->
+            </a>
+        </div>
+
+        <div id="resume-card" class="card vertical clickable">
+            <h2 class="metallic-text">Resume</h2>
+        </div>
+
+        <div id="card5" class="card horizontal contact">
+            <h2 class="metallic-text">Contact</h2>
+            <div class="contact-info">
+                <a href="mailto:rohangowdahy@gmail.com">rohangowdahy@gmail.com</a>
+                <a href="https://www.linkedin.com/in/rohan-y-j/" target="_blank" rel="noopener noreferrer">linkedin.com/rohan-y-j</a>
+                
+            </div>
+        </div>
+    </div>
+
+    <div id="fade-overlay"></div>
+
+    <button class="close-button" aria-label="Close">×</button>
+
+    <script src="menu-script.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.body.style.opacity = '0';
+        setTimeout(() => {
+            document.body.style.opacity = '1';
+            
+            const menuItems = document.querySelectorAll('.menu-container nav ul li');
+            menuItems.forEach((item, index) => {
+                item.style.animation = `textReveal 0.5s ease-out ${index * 0.1}s forwards`;
+            });
+        }, 100);
+    });
+    </script>
+
+    <div id="resume-popup" class="popup">
+        <div class="popup-content">
+            <span class="close-btn">&times;</span>
+            <iframe id="resume-iframe" src="" width="100%" height="100%"></iframe>
+        </div>
+    </div>
+
+    
+</body>
+</html>

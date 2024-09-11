@@ -1,0 +1,241 @@
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #1a1a1a;
+    color: #ffffff;
+}
+
+.projects-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+}
+
+.content-wrapper {
+    display: flex;
+    gap: 3rem;
+    margin-top: 2rem;
+}
+
+.technologies-list {
+    flex: 0 0 180px;
+}
+
+.project-section {
+    flex: 1;
+}
+
+.project-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    color: #ffffff;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    color: #cccccc;
+}
+
+.technologies-list h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: #ffffff;
+}
+
+.technologies-list ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.technologies-list li {
+    margin-bottom: 0.75rem;
+}
+
+.tech-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #cccccc;
+    text-align: left;
+    padding: 0;
+    transition: color 0.3s ease;
+}
+
+.tech-btn:hover, .tech-btn.active {
+    color: #ffffff;
+}
+
+.project {
+    background-color: #2a2a2a;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 4rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.project h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #ffffff;
+}
+
+.project-tags {
+    margin-bottom: 1rem;
+}
+
+.tag {
+    display: inline-block;
+    background-color: #3a3a3a;
+    padding: 0.3rem 0.6rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    margin-right: 0.5rem;
+    color: #ffffff;
+}
+
+/* ... rest of the CSS remains the same ... */
+.live-preview {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 60%; /* Adjusted Aspect Ratio for a slightly zoomed out view */
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    margin-top: 1rem;
+}
+
+.live-preview iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* Update the header styles */
+header {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    display: flex;
+    justify-content: space-between;
+    z-index: 1000;
+}
+
+/* Style for both home and menu buttons */
+.circular-button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #222, #333);
+    /* box-shadow: 5px 5px 10px #1a1a1a, -5px -5px 10px #2a2a2a; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Specific styles for the home button */
+.home-button {
+    left: 20px;
+}
+
+/* Specific styles for the menu button */
+
+/* Hover effect for both buttons */
+.circular-button:hover {
+    /* background: linear-gradient(145deg, #2a2a2a, #3a3a3a);
+    box-shadow: 7px 7px 14px #1a1a1a, -7px -7px 14px #2a2a2a; */
+    transform: scale(1.05);
+}
+
+/* Adjust the content of the buttons */
+.home-button::before {
+    content: 'R';
+}
+
+
+  
+  /* Other styles for the project page (as per your original file) */
+  .projects-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+  }
+  
+  .project-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #ffffff;
+  }
+  
+  .content-wrapper {
+    display: flex;
+    gap: 3rem;
+    margin-top: 2rem;
+  }
+  .hamburger-button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    padding: 10px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+  }
+  
+  .hamburger-button span {
+    width: 30px;
+    height: 2px;
+    background-color: #fff; /* White lines for the hamburger */
+    border-radius: 2px;
+    transition: transform 0.5s ease;
+  }
+  
+  /* Animation for the hamburger lines */
+  .hamburger-button.active span {
+    transform: translateY(10px);
+    background-color: #fff; /* White lines for the hamburger */
+  }
+  .hamburger-button.active span:first-child {
+    transform: rotate(45deg);
+  }
+  .hamburger-button.active span:last-child {
+    transform: rotate(-45deg);
+  }
+  .project {
+    background-color: #2a2a2a;
+    padding: 1.5rem;
+    margin-bottom: 4rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+  
+  .project:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+  

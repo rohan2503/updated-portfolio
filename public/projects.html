@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Experiments - Rohan Yogananda</title>
+    <link rel="stylesheet" href="projects-style.css">
+</head>
+<body>
+    <header>
+        <a href="index.html" class="circular-button home-button"></a>
+        <!-- <button class="hamburger-button" onclick="window.location.href='menu.html'"> -->
+    </header>
+
+    <div class="projects-container" role="main">
+        <div class="content-wrapper">
+            <div class="technologies-list">
+                <h2>TECHNOLOGIES</h2>
+                <ul>
+                    <li><button class="tech-btn">All</button></li>
+                    <li><button class="tech-btn">CSS</button></li>
+                    <li><button class="tech-btn">React</button></li>
+                    <li><button class="tech-btn">Gatsby</button></li>
+                    <li><button class="tech-btn">JavaScript</button></li>
+                    <li><button class="tech-btn">Next.js</button></li>
+                    <li><button class="tech-btn">Three.js</button></li>
+                    <li><button class="tech-btn">VectorDB</button></li>
+                    <li><button class="tech-btn">WebGL</button></li>
+                    <li><button class="tech-btn">Typescript</button></li>
+                    
+                </ul>
+            </div>
+
+            <div class="project-section">
+                <div class="project-header">
+                    <h1>Projects</h1>
+                    <p class="subtitle">My adventure with different technologies to discover new patterns.</p>
+                </div>
+
+                <div id="project-list" class="project-showcase">
+                    <div class="project" data-techs="React JavaScript CSS">
+                        <h3>Easy Rent</h3>
+                        <div class="project-tags">
+                            <span class="tag">React</span>
+                            <span class="tag">CSS</span>
+                            <span class="tag">JavaScript</span>
+                        </div>
+                        <p>Easy Rent is a stylish web platform for subletting in NYC, connecting property owners with trustworthy tenants.</p>
+                        <div class="live-preview">
+                            <iframe src="https://rohan-kiki.vercel.app" frameborder="0" scrolling="yes"></iframe>
+                        </div>
+                    </div>
+
+                    <div class="project" techs="Next.js Typescript CSS">
+                        <h3>Product Page</h3>
+                        <div class="project-tags">
+                            <span class="tag">Next.js</span>
+                            <span class="tag">Typescript</span>
+                            <span class="tag">CSS</span>
+                        </div>
+                        <p>A sleek, responsive product page featuring an intuitive image gallery with custom navigation, and attention to user experience.</p>
+                        <div class="live-preview">
+                            <iframe src="https://product-page-rohan.vercel.app/" frameborder="0" scrolling="yes"></iframe>
+                        </div>
+                    </div>
+
+                    <div class="project" techs="Reac Typescript Three.js">
+                        <h3>Particle Experiment</h3>
+                        <div class="project-tags">
+                            <span class="tag">React</span>
+                            <span class="tag">Typescript</span>
+                            <span class="tag">Three.js</span>
+                        </div>
+                        <p>An interactive 3D particle animation forming an infinity symbol</p>
+                        <div class="live-preview">
+                            <iframe src="https://rohan-particle-experiment.vercel.app/" frameborder="0" scrolling="yes"></iframe>
+                        </div>
+                    </div>
+
+                    <!-- Add more project divs as needed -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="projects-script.js"></script>
+</body>
+</html>

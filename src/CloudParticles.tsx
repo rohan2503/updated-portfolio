@@ -36,7 +36,7 @@ const BlueSkyPastelBalloonCluster: React.FC = () => {
 
     const balloonMaterial = new CANNON.Material('balloon');
     const balloonContactMaterial = new CANNON.ContactMaterial(balloonMaterial, balloonMaterial, {
-      restitution: 0.1,
+      restitution: 0.4,
       friction: 0.05
     });
     world.addContactMaterial(balloonContactMaterial);
@@ -96,7 +96,7 @@ const BlueSkyPastelBalloonCluster: React.FC = () => {
     };
 
     // Create a cluster of balloons
-    const numBalloons = 15;
+    const numBalloons = 14;
     const clusterRadius = 1.5;
     for (let i = 0; i < numBalloons; i++) {
       const radius = 0.5 + Math.random() * 0.2; // Larger balloons
@@ -193,7 +193,7 @@ const BlueSkyPastelBalloonCluster: React.FC = () => {
       {/* Menu Button */}
       {/* Hamburger Menu Button */}
       <button 
-        onClick={() => window.location.href = '/menu'} // Change to your menu page URL
+        onClick={() => window.location.href = '/menu.html'} // Change to your menu page URL
         style={{
           position: 'absolute',
           top: '20px',
